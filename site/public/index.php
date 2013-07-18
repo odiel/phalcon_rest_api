@@ -3,9 +3,6 @@
  * This is the bootstrap file
  */
 
-$a = array(1 => 1);
-strlen($a);die;
-
 // Checking and setting every the application needs to run
 include_once('init_web.php');
 
