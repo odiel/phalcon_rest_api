@@ -3,9 +3,6 @@
  * This is the bootstrap file
  */
 
-$a = array(1 => 1);
-strlen($a);die;
-
 // Checking and setting every the application needs to run
 include_once('init_web.php');
 
@@ -27,20 +24,14 @@ $loader->register();
     'notNullValidations' => false,
 ));
 
-
 //Creating the Application
 $app = new \Classes\Application();
-
-
-//$a = 1/0;
-//a();
 
 //Initiating application, services and events
 $app->init();
 
 //Setting not found controller
 $app->setNotFoundController('Error\NotFound');
-
 
 //Handling request
 $app->handle();
