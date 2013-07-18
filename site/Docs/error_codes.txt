@@ -1,0 +1,73 @@
+
+Error Codes list
+-------------------------------
+
+0 - 2000 - Reserved to API and Security layer
+--------------------------------------------------------------------------
+100 - An internal error happened, please try again              An internal error happened, the operation will be logged in our system, please contact support.
+
+Unauthorized
+-----------------------
+402 - Unable to continue, the request seems to be out of the allowed window time
+403 - The id provided has an invalid structure                                             The length of your id is not 32 characters long
+404 - The id provided is not recognized                                                    The id provided does not exist in the system
+405 - We are so sorry but you are not longer active in our system
+406 - You are not allow to the requested resource
+
+
+500 - 600 -- Related to Nonce's
+------------------------------------
+500 - The nonce provided has an invalid format                      The length of the nonce is not in the range 5~40 characters
+505 - Unable to proceed, you must request the operation again       A request was already made with the same nonce
+520 - Id is a mandatory field                                       Nonce value is required
+525 - Vendor Public Key is a mandatory field
+530 - Nonce Id has to be 5 characters long minimum
+531 - Nonce Id has to be 40 characters long maximum
+540 - Vendor Id has to be 32 characters long
+
+
+1000 -- Related to Secured values
+------------------------------------
+1000 - Unable to process the data           [:name:] parameter does not contain any data to process
+1001 - Unable to process the data           The decryption of [:name:] parameter has failed, please check the way you are encrypting the data
+
+1020 - Data is corrupted                    Data was not encoded properly
+1021 - Data is corrupted                    Seems like the [time] parameter has been altered
+1022 - Data is corrupted                    [:property:] property was expected to appear on [:name:] parameter
+1023 - Data is corrupted                    [:property:] property on [:name:] parameter was expected to have a value
+
+
+
+
+
+5000 - 5100 - Related to Vendors
+---------------------------------
+5000 - Vendor not found             Vendor does not exist in our records
+5001 - Vendor not found             Vendor has been removed from our records
+
+5010 - Operation not allowed        You are not allow to pull information related to other Vendors rather than yourself
+
+5100 - Email is a mandatory field
+
+5101 - Email has to be minimum 5 characters long
+5102 - Email has to be maximum 100 characters long
+5103 - Email has not a valid structure
+
+5120 - First Name is a mandatory field
+5121 - First Name has to be minimum 5 characters long
+5122 - First Name has to be maximum 50 characters long
+
+5140 - Last Name is a mandatory field
+5141 - Last Name has to be minimum 5 characters long
+5142 - Last Name has to be maximum 100 characters long
+
+5160 - Public Key is a mandatory field
+5180 - Private Key is a mandatory field
+
+5200 - A vendor is already registered with the same email address
+
+5300 - A vendor has already the same public key
+
+5400 - A vendor has already the same private key
+
+

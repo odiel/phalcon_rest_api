@@ -1,0 +1,16 @@
+
+Requirements
+-------------------------------
+
+PHP >= 5.4
+
+PHP Extensions
+---------------------------
+Phalcon >= 1.2.0
+Openssl
+Pdo_mysql
+
+
+Other permissions
+---------------------------
+- Be able to call "exec" PHP command
