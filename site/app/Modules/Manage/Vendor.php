@@ -15,17 +15,17 @@ class Vendor extends \Classes\Application\Controller
         ));
 
         if (false == $vendor) {
-            $this->reply->error(5000, 'Vendor not found.', 'Vendor does not exist in our records.');
+            $this->reply->error(5000, 'VendorId', 'Vendor not found.', 'Vendor does not exist in our records.');
             return true;
         }
 
         if (1 == (int) $vendor->deleted) {
-            $this->reply->error(5001, 'Vendor not found.', 'Vendor has been removed from our records.');
+            $this->reply->error(5001, 'VendorId', 'Vendor not found.', 'Vendor has been removed from our records.');
             return true;
         }
 
         if ($this->vendor['id'] !== $vendor->id) {
-            $this->reply->error(5010, 'Operation not allowed.', 'You are not allow to pull information related to other Vendors rather than yourself.');
+            $this->reply->error(5010, 'VendorId', 'Operation not allowed.', 'You are not allow to pull information related to other Vendors rather than yourself.');
             return true;
         }
 
@@ -94,7 +94,7 @@ class Vendor extends \Classes\Application\Controller
         ));
 
         if (false == $vendor) {
-            $this->reply->error(5000, 'Vendor not found.', 'Vendor does not exist in our records.');
+            $this->reply->error(5000, 'VendorId', 'Vendor not found.', 'Vendor does not exist in our records.');
             return true;
         }
 
@@ -133,7 +133,7 @@ class Vendor extends \Classes\Application\Controller
         ));
 
         if (false == $vendor) {
-            $this->reply->error(5000, 'Vendor not found.', 'Vendor does not exist in our records.');
+            $this->reply->error(5000, 'VendorId', 'Vendor not found.', 'Vendor does not exist in our records.');
             return true;
         }
 
