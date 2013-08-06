@@ -306,6 +306,18 @@ class Configuration
         $url->setBaseUri(BASE_URL);
         return $url;
     }
+	
+	/**
+     * Request service
+     *
+     * @return \Classes\Phalcon\Request
+     */
+    public static function getRequestService()
+    {
+        $request = new \Classes\Phalcon\Request();
+        $request->setBufferObject(new \Classes\Application\Request\Buffers\Php());
+        return $request;
+    }
 
     /**
      * Router service
@@ -317,6 +329,9 @@ class Configuration
         $router = new \Phalcon\Mvc\Router(false);
         $router->removeExtraSlashes(true);
 
+		$router->addGet(    '/',                                array('namespace' => 'Modules',       'controller' => 'General\Info'                               ))->setName('home');
+        $router->addGet(    '/hello',                           array('namespace' => 'Modules',       'controller' => 'General\Info'                               ))->setName('hello');
+		
         //Defining routes for Vendor
         $router->addGet(    '/manage/vendor/{id}/:params',      array('namespace' => 'Modules',       'controller' => 'Manage\Vendor'                               ))->setName('get-vendor');
         $router->addPut(    '/manage/vendor/{id}/:params',      array('namespace' => 'Modules',       'controller' => 'Manage\Vendor'                               ))->setName('edit-vendor');

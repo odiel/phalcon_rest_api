@@ -1,4 +1,4 @@
-<?
+<?php
 
 namespace Classes\Phalcon;
 
@@ -23,13 +23,10 @@ class Request extends \Phalcon\Http\Request
      */
     public function getPut($name, $filters = null, $defaultValue = null)
     {
-        if (0 === count($this->_putParameters) && false === $this->_parsed) {
-            $this->parsePutParameters();
-            $this->_parsed = true;
-        }
+        $PUT = $this->obtainPutData();
 
-        if (isset($this->_putParameters[$name])) {
-            $value = $this->_putParameters[$name];
+        if (isset($PUT[$name])) {
+            $value = $PUT[$name];
 
             if (is_array($filters)) {
                 $filter = new \Phalcon\Filter();
@@ -57,26 +54,35 @@ class Request extends \Phalcon\Http\Request
      */
     public function hasPut($name)
     {
-        if (0 === count($this->_putParameters)) {
-            $this->parsePutParameters();
-        }
+        $PUT = $this->obtainPutData();
 
-        if (isset($this->_putParameters[$name])) {
+        if (isset($PUT[$name])) {
             return true;
         }
 
         return false;
     }
 
-    /**
-     * Parse the HTTP PUT values
-     */
-    protected function parsePutParameters()
+    public function obtainPutData()
     {
-        parse_str(file_get_contents('php://input'), $this->_putParameters);
+        if (0 === count($this->_putParameters)) {
+            parse_str($this->_buffer->read(), $this->_putParameters);
+        }
+
+        return $this->_putParameters;
+    }
+
+    public function setBufferObject(\Classes\Application\Request\Buffers\Base $buffer)
+    {
+        $this->_buffer = $buffer;
+    }
+
+    public function getBufferObject()
+    {
+        return $this->_buffer;
     }
 
     private $_putParameters = array();
-    private $_parsed = false;
+    private $_buffer = null;
 
 }

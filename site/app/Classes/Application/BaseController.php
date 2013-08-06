@@ -1,4 +1,4 @@
-<?
+<?php
 
 namespace Classes\Application;
 

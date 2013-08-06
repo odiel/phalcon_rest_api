@@ -1,4 +1,4 @@
-<?
+<?php
 
 namespace Classes;
 
@@ -41,7 +41,7 @@ class Application extends \Phalcon\Mvc\Application
         });
 
         //Initiating application services
-        $di->set('request', new \Classes\Phalcon\Request(), true);
+        $di->set('request', \Configuration::getRequestService(), true);
 
         $di->set('url', \Configuration::getUrlService(), true);
 
