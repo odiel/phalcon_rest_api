@@ -1,4 +1,4 @@
-<?
+<?php
 
 namespace Classes\Application;
 
@@ -18,7 +18,7 @@ class Reply extends \Phalcon\Di\Injectable
      */
     public function result($values, $location = null)
     {
-        $this->_send(200, 'Ok', array('data' => $values), $location);
+        $this->_prepare(200, 'Ok', array('data' => $values), $location);
     }
 
     /**
@@ -29,7 +29,7 @@ class Reply extends \Phalcon\Di\Injectable
      */
     public function created($values, $location = null)
     {
-        $this->_send(201, 'Created', array('data' => $values), $location);
+        $this->_prepare(201, 'Created', array('data' => $values), $location);
     }
 
     /**
@@ -40,7 +40,7 @@ class Reply extends \Phalcon\Di\Injectable
      */
     public function updated($values, $location = null)
     {
-        $this->_send(200, 'Ok', array('data' => $values), $location);
+        $this->_prepare(200, 'Ok', array('data' => $values), $location);
     }
 
     /**
@@ -50,7 +50,7 @@ class Reply extends \Phalcon\Di\Injectable
      */
     public function deleted($location = null)
     {
-        $this->_send(410, 'Gone', null, $location);
+        $this->_prepare(410, 'Gone', null, $location);
     }
 
     /**
@@ -64,7 +64,7 @@ class Reply extends \Phalcon\Di\Injectable
      */
     public function unauthorized($code, $property, $message, $details = null, $moreInfo = null)
     {
-        $this->_send(401, 'Unauthorized', array(
+        $this->_prepare(401, 'Unauthorized', array(
             'error' => array(
                 'code' => $code,
                 'property' => $property,
@@ -86,7 +86,7 @@ class Reply extends \Phalcon\Di\Injectable
      */
     public function forbidden($code, $property, $message, $details = null, $moreInfo = null)
     {
-        $this->_send(403, 'Forbidden', array(
+        $this->_prepare(403, 'Forbidden', array(
             'error' => array(
                 'code' => $code,
                 'property' => $property,
@@ -108,7 +108,7 @@ class Reply extends \Phalcon\Di\Injectable
      */
     public function error($code, $property, $message, $details = null, $moreInfo = null)
     {
-        $this->_send(409, 'Conflict', array(
+        $this->_prepare(409, 'Conflict', array(
             'error' => array(
                 'code' => $code,
                 'property' => $property,
@@ -130,7 +130,7 @@ class Reply extends \Phalcon\Di\Injectable
      */
     public function exception($code, $message, $file, $line, $trace)
     {
-        $this->_send(409, 'Conflict', array(
+        $this->_prepare(409, 'Conflict', array(
             'exception' => array(
                 'code' => $code,
                 'message' => $message,
@@ -149,7 +149,7 @@ class Reply extends \Phalcon\Di\Injectable
      */
     public function internalError($details = null, $moreInfo = null)
     {
-        $this->_send(500, 'Internal Server Error', array(
+        $this->_prepare(500, 'Internal Server Error', array(
             'error' => array(
                 'code' => 500,
                 'message' => 'Internal Server Error',
@@ -168,7 +168,7 @@ class Reply extends \Phalcon\Di\Injectable
      */
     public function notFound($details = null, $moreInfo = null)
     {
-        $this->_send(404, 'Not Found', array(
+        $this->_prepare(404, 'Not Found', array(
             'error' => array(
                 'code' => 404,
                 'message' => 'Not Found',
@@ -187,7 +187,7 @@ class Reply extends \Phalcon\Di\Injectable
      * @param $response
      * @param null $location
      */
-    private function _send($codeNumber, $codeMessage, $response, $location = null)
+    private function _prepare($codeNumber, $codeMessage, $response, $location = null)
     {
         $location = $this->_buildResourceUrl($location);
 
@@ -206,8 +206,6 @@ class Reply extends \Phalcon\Di\Injectable
                 'response' => $response,
             )
         );
-
-        $r->send();
     }
 
     /**
