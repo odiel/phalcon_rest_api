@@ -193,7 +193,6 @@ class Reply extends \Phalcon\Di\Injectable
 
         $r = $this->di->get('response');
         $r->setStatusCode($codeNumber, $codeMessage);
-        $r->setHeader('Location:', $location);
         $r->setHeader('Content-Type', 'application/json');
         $r->setJsonContent(
             array(
